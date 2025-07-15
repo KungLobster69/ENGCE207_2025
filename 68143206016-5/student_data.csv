@@ -1,0 +1,16 @@
+StudentID,FirstName,LastName,Major,MidtermScore,FinalScore,ProjectScore,Attendance
+6401001,Somchai,Jaidee,Computer Engineering,85,90,45,95
+6401002,Somsri,Rakdee,Computer Engineering,76,,48,88
+6401003,Mana,Petch,Civil Engineering,65,72,38,92
+6401004,Chujai,Klaew,Electrical Engineering,92,95,50,98
+6401005,Piti,Yindee,Computer Engineering,88,85,42,85
+6401006,Malee,Boonma,Civil Engineering,,65,35,75
+6401007,Weera,Chokdee,Electrical Engineering,78,82,40,90
+6401008,Jinda,Suksai,Computer Engineering,95,98,49,99
+6401009,Arun,Rungrueng,Industrial Engineering,55,60,30,68
+6401010,Naree,Ngamdee,Civil Engineering,72,78,41,94
+6401011,David,Smith,Computer Engineering,98,100,50,100
+6401012,Emily,Jones,Electrical Engineering,68,75,39.0,80
+6401013,Michael,Brown,Civil Engineering,81,80,44,91
+6401014,Jessica,Davis,Computer Engineering,,92,47,93
+6401015,Chris,Wilson,Industrial Engineering,62,70,33.0,65
