@@ -1,0 +1,75 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+import sklearn as skl
+
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import classification_report, confusion_matrix
+
+from sklearn.datasets import load_breast_cancer
+
+bc = load_breast_cancer()
+
+df_cancer = pd.DataFrame(bc.data, columns=bc.feature_names)
+
+df_cancer['target'] = bc.target
+
+print("# --- เขียนโค้ดของคุณในส่วนนี้ ---")
+print("\n")
+print("# 1. โหลดข้อมูล")
+print("# cancer download success!")
+print("\n")
+print("# 2. สร้างDataFrame")
+print(df_cancer.head())
+
+X_cancer = df_cancer.drop('target', axis=1)
+y_cancer = df_cancer['target']
+
+X_train_c, X_test_c, y_train_c, y_test_c = train_test_split(
+    X_cancer, y_cancer, test_size=0.3, random_state=101
+)
+print("# 3. แยก x และ y")
+print('Train set shape:', X_train_c.shape)
+print('Test set shape:', X_test_c.shape)
+
+scaler = StandardScaler()
+
+scaler.fit(X_train_c)
+
+X_train_c_scaled = scaler.transform(X_train_c)
+X_test_c_scaled = scaler.transform(X_test_c)
+
+df_train_scaled = pd.DataFrame(X_train_c_scaled, columns=X_cancer.columns)
+print(df_train_scaled.describe())
+
+knn_c = KNeighborsClassifier(n_neighbors=1)
+
+knn_c.fit(X_train_c_scaled, y_train_c)
+
+print("โมเดล k-NN ถูกฝึกฝนเรียบร้อยแล้ว!")
+
+predictions_c = knn_c.predict(X_test_c_scaled)
+print("Predictions:", predictions_c)
+
+from sklearn.metrics import classification_report
+
+print(classification_report(y_test_c, predictions_c,target_names=bc.target_names))
+
+from sklearn.metrics import confusion_matrix
+
+cm = confusion_matrix(y_test_c, predictions_c)
+
+print("confusion_matrix:")
+print(cm)
+
+plt.figure(figsize=(8,6))
+sns.heatmap(cm, annot=True, fmt='d', cmap='Blues',
+            xticklabels=bc.target_names,
+            yticklabels=bc.target_names)
+plt.xlabel('Predicted')
+plt.ylabel('Actual')
+plt.title('Confusion Matrix for bc k -NN (k=1)')
+plt.show()
